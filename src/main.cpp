@@ -25,8 +25,11 @@ double units_mult = 0.0036;  // multiplication by mm/s to reach desired units
 
 Button* menu_btn;
 
-double prev_speed = 0;
+
 double ground_speed = 0;
+unsigned long prev_time = 0;
+double prev_speed = 0;
+unsigned long cur_time = 0;
 double max_speed = 0;
 float print_val = 0;
 int interp_count = 0;
@@ -95,7 +98,9 @@ void loop() {
                 last_gps_refresh = cur_time;
 
                 prev_speed = ground_speed;
+                prev_time = cur_time;
                 ground_speed = pvt.gnd_speed;
+                cur_time = millis();
                 interp_count = 0;
                 last_disp_refresh = cur_time;
 
