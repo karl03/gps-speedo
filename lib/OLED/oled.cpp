@@ -27,7 +27,7 @@ void Display::UpdateDispAccel(float speed_inp, int sats, float timer, char* unit
     u8g2->printf("%.1f\n", speed_inp);
     u8g2->setFont(u8g2_font_profont17_mr);
     u8g2->setCursor(0, 64);
-    u8g2->printf("%.1f\n", timer);
+    u8g2->printf("%.2f\n", timer);
     u8g2->setCursor(42, 64);
     u8g2->printf("*%i", sats);
     u8g2->drawStr(84, 64, units);
