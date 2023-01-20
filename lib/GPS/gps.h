@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <math.h>
 #include <avr/pgmspace.h>
 
 const unsigned char UBLOX_INIT[] PROGMEM = {
@@ -88,3 +89,4 @@ struct NAV_PVT {
 void CalcChecksum(unsigned char* CK, NAV_PVT pvt);
 void InitGPS();
 bool ProcessGPS(NAV_PVT* pvt);
+double GetDist(double lat1, double lon1, double lat2, double lon2);

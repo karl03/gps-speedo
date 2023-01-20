@@ -55,3 +55,5 @@ void CalcChecksum(unsigned char* CK, NAV_PVT pvt) {
     CK[1] += CK[0];
   }
 }
+
+double GetDist(double lat1, double lon1, double lat2, double lon2) {}

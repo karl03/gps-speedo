@@ -131,7 +131,10 @@ void loop() {
                 display.ErrorMsg(error_msg.c_str());
             }
             break;
-            
+        
+        case Dist :
+            break;
+
         case Speed :
             if (ProcessGPS(&pvt)) {
                 error = 0;
