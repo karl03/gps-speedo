@@ -37,7 +37,6 @@ unsigned long last_gps_refresh = 0;
 uint8 gps_hz = 0;
 unsigned long last_disp_refresh = 0;
 
-unsigned long cur_time = 0;
 
 unsigned long debounce_tmr = 0;
 uint8_t start_speed = 1;    // currently required to be uint8_t due to u8g2 var function, to be changed to allow higher values
@@ -100,7 +99,6 @@ void loop() {
                 prev_speed = ground_speed;
                 prev_time = cur_time;
                 ground_speed = pvt.gnd_speed;
-                cur_time = millis();
                 interp_count = 0;
                 last_disp_refresh = cur_time;
 
@@ -109,6 +107,14 @@ void loop() {
                     if ((int)(ground_speed * units_mult) >= end_speed) {
                         acc_ready = 0;
                         acc_started = 0;
+
+                        //x = (y1x2 - y2x1 - x2y + x1y) / (y1-y2)
+                        //y = end_speed
+                        //y1 = prev_speed   y2 = ground_speed
+                        //x1 = prev_time    x2 = cur_time
+                        //timer = x
+                        timer = ((prev_speed * cur_time) - (ground_speed * prev_time) - (cur_time * end_speed) + (prev_time *  end_speed)) / (prev_speed - ground_speed);
+
                     } else if ((int)(ground_speed * units_mult) < start_speed) {
                         timer = 0;
                         acc_ready = 1;
