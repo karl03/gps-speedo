@@ -113,7 +113,7 @@ void loop() {
                         //y1 = prev_speed   y2 = ground_speed
                         //x1 = prev_time    x2 = cur_time
                         //timer = x
-                        timer = ((prev_speed * cur_time) - (ground_speed * prev_time) - (cur_time * end_speed) + (prev_time *  end_speed)) / (prev_speed - ground_speed);
+                        timer = ((int)(prev_speed * units_mult) * cur_time) - ((int)(ground_speed * units_mult) * prev_time) - (cur_time * end_speed) + (prev_time *  end_speed)) / ((int)(prev_speed * units_mult) - (int)(ground_speed * units_mult));
 
                     } else if ((int)(ground_speed * units_mult) < start_speed) {
                         timer = 0;
