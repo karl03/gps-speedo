@@ -61,9 +61,9 @@ void switchMenu() {
 }
 
 void setup() {
-    pinMode(12, INPUT_PULLUP);
-    attachInterrupt(digitalPinToInterrupt(12), ISR_MENU, RISING);
-    menu_btn = new Button(12, &debounce_tmr, switchMenu);
+    pinMode(MENU_PIN, INPUT_PULLUP);
+    attachInterrupt(digitalPinToInterrupt(MENU_PIN), ISR_MENU, RISING);
+    menu_btn = new Button(MENU_PIN, &debounce_tmr, switchMenu);
 
     display.init();
     disp = display.GetU8G2();
@@ -113,7 +113,7 @@ void loop() {
                         //y1 = prev_speed   y2 = ground_speed
                         //x1 = prev_time    x2 = cur_time
                         //timer = x
-                        timer = ((prev_speed * cur_time) - (ground_speed * prev_time) - (cur_time * end_speed) + (prev_time *  end_speed)) / (prev_speed - ground_speed);
+                        //timer = ((prev_speed * cur_time) - (ground_speed * prev_time) - (cur_time * end_speed) + (prev_time *  end_speed)) / (prev_speed - ground_speed);
 
                     } else if ((int)(ground_speed * units_mult) < start_speed) {
                         timer = 0;
